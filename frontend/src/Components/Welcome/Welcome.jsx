@@ -7,7 +7,7 @@ function Welcome() {
       <Container>
       <Col>
             <div className=''>
-                <h1 className='fs-2 text-center mt-3'>ยินดีต้อนรับสู่หน้าศิษย์เก่า</h1>
+                <h1 className='fs-2 text-center mt-3'>ยินดีต้อนรับสู่หน้าศิษย์เก่าtest</h1>
             </div>
       </Col>
     </Container>
