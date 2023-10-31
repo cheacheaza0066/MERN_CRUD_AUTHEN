@@ -1,4 +1,4 @@
-import Welcome from '../Components/Welcome/Welcome'
+import Welcome from './Welcome/Welcome'
 
 function WelcomePage() {
   return (

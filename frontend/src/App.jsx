@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./Page/Login";
-import Dashboard from "./Page/Dashboard";
 import WelcomePage from "./Page/WelcomePage";
+import Register from "./Page/Register/Register";
 
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
       </Routes>
     </BrowserRouter>
