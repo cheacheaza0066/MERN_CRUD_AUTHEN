@@ -1,12 +1,46 @@
 import express from "express";
-import{User} from '../models/USERMODEL.js'
-import bcrypt  from "bcrypt";
+import {User} from '../models/userModel.js';
+import bcrypt from "bcrypt";
 const router = express.Router();
+import jwt from "jsonwebtoken";
 
-router.post('api/register',async(req,res)=>{
-    console.log(req.body)
+router.get('/', (req,res)=>{
+    return res.send('Welcome test')
+})
+// ข้อมูล User ทั้งหมด
+router.get('/api/getAllUser',async(req,res)=>{
     try {
-        const newPassword = await bcrypt.hash(req.body.password,10)
+        const users = await User.find({});
+        return res.status(200).json({
+            data:users
+        })
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+})
+
+// ลงทะเบียน User
+router.post('/api/register', async (req, res) => {
+    console.log(req.body);
+    try {
+        
+        if (
+            !req.body.firstname ||
+            !req.body.lastname||
+            !req.body.student_id||
+            !req.body.student_grp||
+            !req.body.email||
+            !req.body.password||
+            !req.body.code
+            )
+            {
+                return res.status(400).send({
+                    message: 'กรุณากรอกให้ครบทุกช่อง'
+                });
+        
+        }
+        const newPassword = await bcrypt.hash(req.body.password, 10);
         await User.create({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -15,29 +49,50 @@ router.post('api/register',async(req,res)=>{
             email: req.body.email,
             password: newPassword,
             code: req.body.code,
-
-        })
-        res.json({ status: 'ok' })
-
+        });
+        res.json({ status: 'ลงทะเบียนเรียบร้อย' });
     } catch (error) {
-        res.json({ status: 'error', error: 'Duplicate email' })
+        res.json({ status: 'error', error: 'อีเมลนี้ถูกใช้งานเเล้ว หรือ โค๊ดไม่ถูกต้อง' });
     }
-})
+});
 
-router.post('api/login',async(req,res)=>{
+// router.delete('/api/:id',(req,res)=>{
+//     try {
+//         // const {id} r
+//     } catch (error) {
+//     console.log(error.message);
+//     res.status(500).send({ message: error.message });
+//     }
+// })
+
+
+
+
+
+
+router.post('/api/login', async (req, res) => {
     const user = await User.findOne({
-        email:req.body.email
-    })
-
+        email: req.body.email
+    });
     if (!user) {
-        return { status: 'error', error: 'Invalid login' }
+        return res.json({ status: 'error', error: 'Invalid login' });
     }
     const isPasswordValid = await bcrypt.compare(
         req.body.password,
         user.password
-    )
+    );
     if (isPasswordValid) {
-        // const token =
+        const token = jwt.sign({
+            firstname : user.firstname,
+            lastname : user.lastname,
+            email:user.email
+        },
+        'secret123'
+        )
+        return res.json({ status: 'ok', user: token })
+    } else {
+        res.json({ status: 'error', error: 'Invalid login' });
     }
+});
 
-})
+export default router;
