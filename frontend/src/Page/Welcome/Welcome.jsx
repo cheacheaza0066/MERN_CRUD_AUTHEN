@@ -20,6 +20,7 @@ function Welcome() {
   const handleShow_Login = () => setShow_Login(true);
 
 
+
   // Register 
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
@@ -28,8 +29,8 @@ function Welcome() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [code, setCode] = useState('')
-
-  const handleRegister = () =>{
+  const handleRegister = (e) =>{
+    e.preventDefault()
     const date = {
       firstname,
       lastname,
@@ -60,6 +61,29 @@ function Welcome() {
     handleClose_Register(); // Close the registration modal
   }
 
+//login
+const [email_Login, setEmail_Login] = useState('')
+const [password_Login, setPassword_Login] = useState('')
+
+  const handleLogin= () =>{
+    
+
+
+    const data_Login = {
+      email_Login,  
+      password_Login
+
+    }
+    axios.post('http://localhost:5555/api/login',data_Login)
+    .then(()=>{
+     console.log('Login success')
+    })
+    .catch((error)=>{
+     
+      console.log(error.response.data.message)
+    })
+    console.log(data_Login)
+  }
   return (
     <>
       <div className={Styles.container}>
@@ -171,28 +195,28 @@ function Welcome() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>อีเมล</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="name@example.com"
                 autoFocus
+                onChange={(e)=>setEmail_Login(e.target.value)}
+
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>รหัสผ่าน</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={(e)=>setPassword_Login(e.target.value)}
+
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose_Login}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose_Login}>
-            Save Changes
+          
+          <Button variant="primary" onClick={handleLogin}>
+            เข้าสู่ระบบ
           </Button>
         </Modal.Footer>
       </Modal>
