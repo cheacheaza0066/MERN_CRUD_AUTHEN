@@ -66,33 +66,43 @@ router.post("/api/register", async (req, res) => {
 // })
 
 router.post("/api/login", async (req, res) => {
-    console.log(req.body.email_Login)
-    console.log(req.body.password_Login)
-
-  const user = await User.findOne({
-    email: req.body.email_Login,
+    try {
+    //   console.log(req.body.email_Login);
+    //   console.log(req.body.password_Login);
+  
+      const user = await User.findOne({
+        email: req.body.email_Login,
+      });
+  
+      if (!user) {
+        return res.status(401).json({ status: "error", error: "ไม่พบผู้ใช้งาน" });
+      }
+  
+      const isPasswordValid = await bcrypt.compare(
+        req.body.password_Login,
+        user.password
+      );
+  
+      if (isPasswordValid) {
+        const token = jwt.sign(
+          {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+          },
+          JWT_SECRET,
+          { expiresIn: "1d" }
+        );
+  
+        return res.json({ status: "ok", user: token });
+      } else {
+        return res.status(401).json({ status: "error", error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" });
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ status: "error", error: "Internal server error" });
+    }
   });
-  if (!user) {
-    return res.json({ status: "error", error: "Invalid login" });
-  }
-  const isPasswordValid = await bcrypt.compare(
-    req.body.password_Login,
-    user.password
-  );
-  if (isPasswordValid) {
-    const token = jwt.sign(
-      {
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-      },
-      JWT_SECRET,
-      { expiresIn: "1d" }
-    );
-    return res.json({ status: "ok", user: token });
-  } else {
-    res.json({ status: "error", error: "Invalid login" });
-  }
-});
+  
 
 export default router;

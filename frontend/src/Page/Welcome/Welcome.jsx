@@ -76,13 +76,22 @@ const [password_Login, setPassword_Login] = useState('')
     }
     axios.post('http://localhost:5555/api/login',data_Login)
     .then(()=>{
-     console.log('Login success')
-    })
+      Swal.fire(
+        'สำเร็จ',
+        'Login สำเร็จ',
+        'success'
+      )
+        navigate('/homepage')
+      })    
     .catch((error)=>{
      
-      console.log(error.response.data.message)
+      Swal.fire({
+        icon: 'error',
+        title: error.response.data.error,
+       
+      })
+      console.log(error)    
     })
-    console.log(data_Login)
   }
   return (
     <>
