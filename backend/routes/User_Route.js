@@ -84,6 +84,7 @@ router.post("/api/login", async (req, res) => {
       );
   
       if (isPasswordValid) {
+
         const token = jwt.sign(
           {
             firstname: user.firstname,
@@ -94,7 +95,9 @@ router.post("/api/login", async (req, res) => {
           { expiresIn: "1d" }
         );
   
-        return res.json({ status: "ok", user: token });
+        // return res.json({ status: "ok", user: token });
+        return res.send({ token});
+
       } else {
         return res.status(401).json({ status: "error", error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" });
       }
