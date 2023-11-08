@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { authenticate } from "../../service/authorize";
 
 function Welcome() {
   const navigate = useNavigate();
@@ -43,11 +44,13 @@ function Welcome() {
     axios.post('http://localhost:5555/api/register',date)
     .then(()=>{
       Swal.fire(
-      'Good job!',
-      'You clicked the button!',
+      'ลงทะเบียนสำเร็จ',
+      'กรุณาล็อคอิน',
       'success'
     )
-      navigate('/homepage')
+    handleShow_Login()
+
+      // navigate('/homepage')
     })
     .catch((error)=>{
       Swal.fire({
@@ -75,13 +78,14 @@ const [password_Login, setPassword_Login] = useState('')
 
     }
     axios.post('http://localhost:5555/api/login',data_Login)
-    .then((result)=>{
+    .then((res)=>{
       Swal.fire(
         'สำเร็จ',
         'Login สำเร็จ',
         'success'
       )
-      console.log(result)
+      authenticate(res)
+      console.log(res)
         navigate('/homepage')
       })    
     .catch((error)=>{
@@ -94,6 +98,11 @@ const [password_Login, setPassword_Login] = useState('')
       console.log(error)    
     })
   }
+
+
+
+  
+  
   return (
     <>
       <div className={Styles.container}>

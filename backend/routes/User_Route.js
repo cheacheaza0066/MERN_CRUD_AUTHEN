@@ -47,7 +47,9 @@ router.post("/api/register", async (req, res) => {
       password: newPassword,
       code: req.body.code,
     });
-    res.json({ status: "ลงทะเบียนเรียบร้อย" });
+    // res.json({ status: "ลงทะเบียนเรียบร้อย" });
+    res.json({ status: "ลงทะเบียนเรียบร้อย", user: { token, firstname: req.body.firstname} });
+
   } catch (error) {
     res.json({
       status: "error",
@@ -96,7 +98,8 @@ router.post("/api/login", async (req, res) => {
         );
   
         // return res.json({ status: "ok", user: token });
-        return res.send({ token});
+        return res.json({ status: "ok", user: { token, firstname: user.firstname } });
+        
 
       } else {
         return res.status(401).json({ status: "error", error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" });
