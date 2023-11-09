@@ -9,6 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import { authenticate } from "../../service/authorize";
+import Navcomponents from "../../Components/Nav/Navcomponents";
 
 function Welcome() {
   const navigate = useNavigate();
@@ -105,6 +106,7 @@ const [password_Login, setPassword_Login] = useState('')
   
   return (
     <>
+    <Navcomponents/>
       <div className={Styles.container}>
         <Container>
           <Col>

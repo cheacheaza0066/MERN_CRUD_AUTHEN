@@ -85,6 +85,17 @@ router.delete('/api/:id',async(req,res)=>{
     res.status(500).send({ message: error.message });
     }
 })
+router.get('/api/:id',async (req,res)=>{
+  try {
+    const {id} = req.params
+    const user = await User.findById(id);
+    return res.status(200).json(user)
+
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+})
 
 router.post("/api/login", async (req, res) => {
     try {
