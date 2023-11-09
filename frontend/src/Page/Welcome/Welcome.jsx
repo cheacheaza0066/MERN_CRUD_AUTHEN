@@ -108,7 +108,6 @@ const [password_Login, setPassword_Login] = useState('')
       <div className={Styles.container}>
         <Container>
           <Col>
-            ={" "}
             <h1 className="fs-2 text-center mt-3">
               ยินดีต้อนรับสู่หน้าศิษย์เก่า
             </h1>

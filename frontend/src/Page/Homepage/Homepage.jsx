@@ -16,12 +16,18 @@ function Homepage() {
       'success'
     )
   };
+  const handleShowUser = ()=>{
+    navigate('/user')
+  }
 
   return (
     <div>
       <h1>Home Page</h1>
       <Button onClick={handleLogout} variant="contained">
         ออกจากระบบ
+      </Button>
+      <Button onClick={handleShowUser} variant="contained">
+        ดูข้อมูลศิษย์เก่า
       </Button>
     </div>
   );

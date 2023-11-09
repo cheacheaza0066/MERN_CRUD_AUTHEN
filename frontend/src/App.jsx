@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Homepage from "./Page/Homepage/Homepage";
 import Welcome from "./Page/Welcome/Welcome";
 import Auth from "./Components/AdminRoute/Auth";
+import User from "./Components/View/User";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/homepage" element={<Auth><Homepage /></Auth>}/>
 
+        <Route path="/user" element={<Auth><User /></Auth>}/>
 
       </Routes>
     </BrowserRouter>

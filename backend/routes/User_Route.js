@@ -58,14 +58,33 @@ router.post("/api/register", async (req, res) => {
   }
 });
 
-// router.delete('/api/:id',(req,res)=>{
-//     try {
-//         // const {id} r
-//     } catch (error) {
-//     console.log(error.message);
-//     res.status(500).send({ message: error.message });
-//     }
-// })
+router.get('/api/getall',async (req,res)=>{
+  try {
+    const user = await User.find({})
+  return res.status(200).json({
+    data:user
+  })
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+  
+})
+
+router.delete('/api/:id',async(req,res)=>{
+    try {
+      const {id} = req.params
+      const result = await User.findByIdAndDelete(id);
+      if (!result) {
+        return res.status(404).json({ message: 'ไม่พบไอดี' });
+      }
+  
+      return res.status(200).send({ message: 'ลบสำเร็จ' });    } 
+      catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+    }
+})
 
 router.post("/api/login", async (req, res) => {
     try {
