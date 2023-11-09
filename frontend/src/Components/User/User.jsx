@@ -22,19 +22,28 @@ function User() {
   }, []);
 
   const handleDelete = (_id) => {
-    try {
-      axios.delete(`http://localhost:5555/api/${_id}`)
-    .then(()=>{
-      Swal.fire(
-        'สำเร็จ',
-        'ลบสำเร็จ',
-        'success'
-      )
-    })
-    fetchUser()
-    } catch (error) {
-      console.log(error)
-    }
+    // Show confirmation dialog
+    Swal.fire({
+      title: 'คุณแน่ใจหรือไม่?',
+      text: 'คุณต้องการลบข้อมูลนี้?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่, ลบ!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User confirmed, proceed with delete
+        try {
+          axios.delete(`http://localhost:5555/api/${_id}`).then(() => {
+            Swal.fire('สำเร็จ', 'ลบสำเร็จ', 'success');
+          });
+          fetchUser();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   };
 
   const handleView = (_id) => {
