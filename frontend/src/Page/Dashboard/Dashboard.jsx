@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import Swal from 'sweetalert2'
 import Navcomponents from "../../Components/Nav/Navcomponents";
 
-function Homepage() {
+function Dashboard() {
   const navigate = useNavigate();
 
  
@@ -26,4 +26,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Dashboard;

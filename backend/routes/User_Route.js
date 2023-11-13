@@ -99,9 +99,7 @@ router.get('/api/:id',async (req,res)=>{
 
 router.post("/api/login", async (req, res) => {
     try {
-    //   console.log(req.body.email_Login);
-    //   console.log(req.body.password_Login);
-  
+ 
       const user = await User.findOne({
         email: req.body.email_Login,
       });
@@ -122,6 +120,7 @@ router.post("/api/login", async (req, res) => {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
+            
           },
           JWT_SECRET,
           { expiresIn: "1d" }

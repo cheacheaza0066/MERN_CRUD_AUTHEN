@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-// import CardUser from "../Card/CardUser";
+import CardUser from "../Card/CardUser";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Navcomponents from "../Nav/Navcomponents";
 
 function ViewUser() {
   const { _id } = useParams();
@@ -25,11 +26,13 @@ function ViewUser() {
   console.log(user);
 
   return (
+    <>
+    <Navcomponents/>
     <div>
       <h1>User Details</h1>
-      {/* Render the CardUser component with user data */}
-      {/* <CardUser user={user} /> */}
+      <CardUser user={user} />
     </div>
+    </>
   );
 }
 

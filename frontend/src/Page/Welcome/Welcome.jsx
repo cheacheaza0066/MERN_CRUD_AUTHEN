@@ -51,7 +51,6 @@ function Welcome() {
     )
     handleShow_Login()
 
-      // navigate('/homepage')
     })
     .catch((error)=>{
       Swal.fire({
@@ -87,7 +86,7 @@ const [password_Login, setPassword_Login] = useState('')
       )
       authenticate(res)
       console.log(res)
-        navigate('/homepage')
+        navigate('/Dashboard')
       })    
     .catch((error)=>{
      
