@@ -86,7 +86,13 @@ const [password_Login, setPassword_Login] = useState('')
       )
       authenticate(res)
       console.log(res)
+      if (res.data.user.role ==='user') {
+        navigate('/homepage')
+
+      }else if(res.data.user.role ==='admin'){
         navigate('/Dashboard')
+
+      }
       })    
     .catch((error)=>{
      

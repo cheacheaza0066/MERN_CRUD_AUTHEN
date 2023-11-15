@@ -52,8 +52,8 @@ function User() {
   };
 
   const handleUpdate = (_id) => {
-    console.log(`Updating user with ID: ${_id}`);
-    // Add your update logic here, using the user id
+    const url = `/update/:${_id}`
+    navigate(url)
   };
 
   return (

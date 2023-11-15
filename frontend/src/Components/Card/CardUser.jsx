@@ -1,34 +1,33 @@
+/* eslint-disable react/prop-types */
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-function CardUser() {
+
+function CardUser({ user }) {
+  const { firstname,lastname,student_grp ,student_id  } = user;
+
   return (
     <div>
       <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://cdn.pixabay.com/photo/2023/10/15/15/29/pumpkins-8317227_1280.jpg"
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+        <CardMedia
+          sx={{ height: 140 }}
+          image="https://cdn.pixabay.com/photo/2023/10/15/15/29/pumpkins-8317227_1280.jpg"
+          title="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {firstname} {lastname}
+
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {student_grp} {student_id}
+          </Typography>
+        </CardContent>
+        
+      </Card>
     </div>
-  )
+  );
 }
 
-export default CardUser
+export default CardUser;

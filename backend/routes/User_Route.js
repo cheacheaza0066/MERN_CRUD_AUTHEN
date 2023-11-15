@@ -58,6 +58,7 @@ router.post("/api/register", async (req, res) => {
   }
 });
 
+//ข้อมูล user ทั้งหมด
 router.get('/api/getall',async (req,res)=>{
   try {
     const user = await User.find({})
@@ -70,7 +71,7 @@ router.get('/api/getall',async (req,res)=>{
   }
   
 })
-
+//delete
 router.delete('/api/:id',async(req,res)=>{
     try {
       const {id} = req.params
@@ -85,6 +86,7 @@ router.delete('/api/:id',async(req,res)=>{
     res.status(500).send({ message: error.message });
     }
 })
+//view user
 router.get('/api/:id',async (req,res)=>{
   try {
     const {id} = req.params
@@ -120,14 +122,15 @@ router.post("/api/login", async (req, res) => {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
-            
+            role:user.role
+
           },
           JWT_SECRET,
           { expiresIn: "1d" }
         );
   
         // return res.json({ status: "ok", user: token });
-        return res.json({ status: "ok", user: { token, firstname: user.firstname } });
+        return res.json({ status: "ok", user: { token, firstname: user.firstname , role:user.role } });
         
 
       } else {
@@ -139,5 +142,33 @@ router.post("/api/login", async (req, res) => {
     }
   });
   
+  //Update user
+router.put('/api/:id', async (req, res) => {
+  console.log(req.body);
+  try {
+    if (
+      !req.body.firstname ||
+      !req.body.lastname ||
+      !req.body.student_id ||
+      !req.body.student_grp 
+    ) {
+      return res.status(400).send({
+        message: "กรุณากรอกให้ครบทุกช่อง",
+      });
+    }
+    const { id } = req.params;
+
+    const result = await User.findByIdAndUpdate(id, req.body);
+
+    if (!result) {
+      return response.status(404).json({ message: 'User not found' });
+    }
+
+    return response.status(200).send({ message: 'User updated successfully' });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
 
 export default router;

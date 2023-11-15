@@ -5,12 +5,13 @@ import axios from "axios";
 import Navcomponents from "../Nav/Navcomponents";
 
 function ViewUser() {
-  const { _id } = useParams();
+  const { id } = useParams();
   const [user, setUser] = useState([])
-  console.log(_id)
+  const cleanedId = id.substring(1);
+
 
   const fetchUser = () => {
-    axios.get(`http://localhost:5555/api/${_id}`)
+    axios.get(`http://localhost:5555/api/${cleanedId}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -21,15 +22,13 @@ function ViewUser() {
 
   useEffect(() => {
     fetchUser();
-  }, [_id]);
+  }, []);
 
-  console.log(user);
-
+console.log(user)
   return (
     <>
     <Navcomponents/>
     <div>
-      <h1>User Details</h1>
       <CardUser user={user} />
     </div>
     </>
