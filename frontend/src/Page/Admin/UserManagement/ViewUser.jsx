@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import CardUser from "../Card/CardUser";
+import CardUser from "../../../Components/Card/CardUser";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Navcomponents from "../Nav/Navcomponents";
+import Navcomponents from "../../../Components/Nav/Navcomponents";
 
 function ViewUser() {
   const { id } = useParams();

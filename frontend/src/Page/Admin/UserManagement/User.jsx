@@ -3,9 +3,9 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2'
-import Navcomponents from "../Nav/Navcomponents";
 import { useNavigate } from "react-router-dom";
-
+import Navcomponents from "../../../Components/Nav/Navcomponents";
+ 
 function User() {
   const [user, setUser] = useState([]);
   const navigate = useNavigate()

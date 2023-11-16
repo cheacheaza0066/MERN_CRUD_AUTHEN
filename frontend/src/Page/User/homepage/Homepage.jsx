@@ -1,4 +1,4 @@
-import Navcomponents from "../../Components/Nav/Navcomponents"
+import Navcomponents from "../../../Components/Nav/Navcomponents"
 
 function Homepage() {
   return (

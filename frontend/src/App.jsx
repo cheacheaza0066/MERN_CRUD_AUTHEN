@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Dashboard from "./Page/Dashboard/Dashboard";
+import Dashboard from "./Page/Admin/Dashboard/Dashboard";
 import Welcome from "./Page/Welcome/Welcome";
 import Auth from "./Components/AdminRoute/Auth";
-import User from "./Components/User/User";
-import ViewUser from "./Components/User/ViewUser";
-import Homepage from "./Page/homepage/Homepage";
-import UpdateUser from "./Components/User/UpdateUser";
+import User from "../src/Page/Admin/UserManagement/User";
+import ViewUser from "../src/Page/Admin/UserManagement/ViewUser";
+import Homepage from "../src/Page/User/homepage/Homepage";
+import UpdateUser from "../src/Page/Admin/UserManagement/UpdateUser";
 
 function App() {
   return (
@@ -15,7 +15,6 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/Dashboard" element={<Auth><Dashboard /></Auth>} />
         <Route path="/homepage" element={<Auth><Homepage /></Auth>} />
-
         <Route path="/user" element={<Auth><User /></Auth>} />
         <Route path="/userview/:id" element={<Auth><ViewUser /></Auth>} />
         <Route path="/update/:id" element={<Auth><UpdateUser /></Auth>} />

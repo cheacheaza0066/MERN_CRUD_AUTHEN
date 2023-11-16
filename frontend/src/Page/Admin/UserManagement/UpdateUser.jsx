@@ -4,13 +4,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useParams } from "react-router-dom";
-import Navcomponents from "../Nav/Navcomponents";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Navcomponents from "../../../Components/Nav/Navcomponents";
 
 function UpdateUser() {
   const { id } = useParams();

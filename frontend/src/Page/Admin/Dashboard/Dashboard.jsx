@@ -1,8 +1,8 @@
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 // import Swal from 'sweetalert2'
-import Navcomponents from "../../Components/Nav/Navcomponents";
-import { getRole } from "../../service/authorize";
+import Navcomponents from "../../../Components/Nav/Navcomponents";
+import { getRole } from "../../../service/authorize";
 import { useEffect } from "react";
 
 function Dashboard() {
