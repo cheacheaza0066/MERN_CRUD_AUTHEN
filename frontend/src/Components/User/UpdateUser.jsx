@@ -8,39 +8,37 @@ import Navcomponents from "../Nav/Navcomponents";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function UpdateUser() {
-  // const navigate = useNavigate();
-
   const { id } = useParams();
   const cleanedId = id.substring(1);
- 
-    
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [student_id, setStudent_id] = useState("");
   const [student_grp, setStudent_grp] = useState("");
-  console.log(firstname,lastname,student_grp,student_id)
+  const [role, setRole] = useState("");
+
+  console.log(firstname, lastname, student_grp, student_id, role);
 
   const fetchUser = () => {
-  
     axios
       .get(`http://localhost:5555/api/${cleanedId}`)
       .then((response) => {
         const userData = response.data;
-          setFirstname(userData.firstname);
-          setLastname(userData.lastname);
-          setStudent_id(userData.student_id);
-          setStudent_grp(userData.student_grp);
-
+        setFirstname(userData.firstname);
+        setLastname(userData.lastname);
+        setStudent_id(userData.student_id);
+        setStudent_grp(userData.student_grp);
+        setRole(userData.role);
       })
       .catch((error) => {
         console.error("Error fetching user:", error);
       });
   };
-  
 
   useEffect(() => {
     fetchUser();
@@ -48,34 +46,34 @@ function UpdateUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const data = {
       firstname,
       lastname,
       student_id,
       student_grp,
+      role,
     };
-  
-    axios.put(`http://localhost:5555/api/${cleanedId}`, data)
+
+    axios
+      .put(`http://localhost:5555/api/${cleanedId}`, data)
       .then((res) => {
-        Swal.fire('สำเร็จ', 'อัปเดทสำเร็จ', 'success');
+        Swal.fire("สำเร็จ", "อัปเดทสำเร็จ", "success");
         console.log(res);
       })
       .catch((err) => {
         Swal.fire({
-          icon: 'error',
-          title: err.response.data.message
-         
-        })
+          icon: "error",
+          title: err.response.data.message,
+        });
       });
   };
 
-  // console.log(user);
   return (
     <>
       <Navcomponents />
       <Container>
-      <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col} md="4" controlId="validationCustom01">
               <Form.Label>First name</Form.Label>
@@ -125,6 +123,20 @@ function UpdateUser() {
                 Please provide a valid student_grp.
               </Form.Control.Feedback>
             </Form.Group>
+
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              value={role}
+              name="radio-buttons-group"
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <FormControlLabel value="user" control={<Radio />} label="user" />
+              <FormControlLabel
+                value="admin"
+                control={<Radio />}
+                label="admin"
+              />
+            </RadioGroup>
           </Row>
 
           <Button type="submit">Submit form</Button>
