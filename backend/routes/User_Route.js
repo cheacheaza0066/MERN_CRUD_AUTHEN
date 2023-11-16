@@ -161,10 +161,10 @@ router.put('/api/:id', async (req, res) => {
     const result = await User.findByIdAndUpdate(id, req.body);
 
     if (!result) {
-      return response.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'ไม่พบ user' });
     }
-
-    return response.status(200).send({ message: 'User updated successfully' });
+    
+    return res.status(200).send({ message: 'User updated successfully' });
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
