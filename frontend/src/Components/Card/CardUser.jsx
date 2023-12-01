@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 function CardUser({ user }) {
-  const { firstname,lastname,student_grp ,student_id  } = user;
+  const { firstname,lastname,student_grp ,student_id ,email } = user;
 
   return (
     <div>
@@ -22,6 +22,9 @@ function CardUser({ user }) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {student_grp} {student_id}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {email}
           </Typography>
         </CardContent>
         

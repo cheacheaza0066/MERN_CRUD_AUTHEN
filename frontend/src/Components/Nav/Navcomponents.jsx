@@ -3,10 +3,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Logout, getRole, getUser } from "../../service/authorize";
+import { Logout, getID, getRole, getUser } from "../../service/authorize";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 function Navcomponents() {
+  const id = getID();
   const role = getRole();
   const user = getUser();
   const navigate = useNavigate()
@@ -45,7 +46,8 @@ function Navcomponents() {
             
           <Button  onClick={()=>navigate('/Dashboard')} color="inherit">Dashboard</Button>
           }
-          
+            
+            <Button  onClick={()=>navigate(`/editProfile/${id}`)} color="inherit">Edit Profile</Button>
           
          
          

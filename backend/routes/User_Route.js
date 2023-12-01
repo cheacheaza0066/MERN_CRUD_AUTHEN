@@ -130,7 +130,7 @@ router.post("/api/login", async (req, res) => {
         );
   
         // return res.json({ status: "ok", user: token });
-        return res.json({ status: "ok", user: { token, firstname: user.firstname , role:user.role } });
+        return res.json({ status: "ok", user: { token, firstname: user.firstname , role:user.role ,id:user._id } });
         
 
       } else {
