@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+.right {
+    flex-grow: 1; /* Use flex-grow to make the right div take up the available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

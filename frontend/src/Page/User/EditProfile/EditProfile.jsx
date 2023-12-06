@@ -7,14 +7,13 @@ import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
+
 import Navcomponents from "../../../Components/Nav/Navcomponents";
 
 function EditProfile() {
   const { id } = useParams();
-  const cleanedId = id.substring(1);
+  // const cleanedId = id.substring(1);
+  // console.log(cleanedId)
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -22,12 +21,13 @@ function EditProfile() {
   const [student_grp, setStudent_grp] = useState("");
   const [role, setRole] = useState("");
 
-  console.log(firstname, lastname, student_grp, student_id, role);
+  // console.log(firstname, lastname, student_grp, student_id, role);
 
   const fetchUser = () => {
     axios
-      .get(`http://localhost:5555/api/${cleanedId}`)
+      .get(`http://localhost:5555/api/${id}`)
       .then((response) => {
+        console.log(response)
         const userData = response.data;
         setFirstname(userData.firstname);
         setLastname(userData.lastname);
@@ -42,7 +42,7 @@ function EditProfile() {
 
   useEffect(() => {
     fetchUser();
-  }, [cleanedId]);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ function EditProfile() {
     };
 
     axios
-      .put(`http://localhost:5555/api/${cleanedId}`, data)
+      .put(`http://localhost:5555/api/${id}`, data)
       .then((res) => {
         Swal.fire("สำเร็จ", "อัปเดทสำเร็จ", "success");
         console.log(res);
@@ -123,19 +123,7 @@ function EditProfile() {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            value={role}
-            name="radio-buttons-group"
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <FormControlLabel value="user" control={<Radio />} label="user" />
-            <FormControlLabel
-              value="admin"
-              control={<Radio />}
-              label="admin"
-            />
-          </RadioGroup>
+          
         </Row>
 
         <Button type="submit">Submit form</Button>

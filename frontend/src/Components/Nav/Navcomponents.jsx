@@ -28,15 +28,7 @@ function Navcomponents() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
+
            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >
             
             <Button className="mt-1" onClick={()=>navigate('/homepage')} color="inherit">Homepage</Button>
@@ -44,7 +36,7 @@ function Navcomponents() {
 
           {role === 'admin' && 
             
-          <Button  onClick={()=>navigate('/Dashboard')} color="inherit">Dashboard</Button>
+          <Button onClick={()=>navigate('/Dashboard')} color="inherit">Dashboard</Button>
           }
             
             <Button  onClick={()=>navigate(`/editProfile/${id}`)} color="inherit">Edit Profile</Button>

@@ -11,7 +11,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Navcomponents from "../../../Components/Nav/Navcomponents";
-
+import SidebarComponent from "../../../Components/Sidebar/SidebarComponent";
+import styles from "./UpdateUser.module.css";
 function UpdateUser() {
   const { id } = useParams();
   const cleanedId = id.substring(1);
@@ -72,7 +73,14 @@ function UpdateUser() {
   return (
     <>
       <Navcomponents />
-      <Container>
+      <div className={styles.container}>
+        <div>
+    <SidebarComponent/>
+        </div>
+        <div className={styles.right}>
+        <Container>
+        <h4 className="fs-5 my-2">เเก้ไขข้อมูลผู้ใช้งาน</h4>
+
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -142,6 +150,8 @@ function UpdateUser() {
           <Button type="submit">Submit form</Button>
         </Form>
       </Container>
+        </div>
+      </div>
     </>
   );
 }
