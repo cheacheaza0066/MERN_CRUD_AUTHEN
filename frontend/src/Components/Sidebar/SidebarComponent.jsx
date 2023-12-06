@@ -5,6 +5,7 @@ import {
     Menu,
     MenuItem,
   } from "react-pro-sidebar";
+  // eslint-disable-next-line no-unused-vars
   import { Box, IconButton, Typography  } from "@mui/material";
   import { Link } from "react-router-dom";
   
@@ -12,6 +13,7 @@ import {
   import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 function SidebarComponent() {
+    // eslint-disable-next-line no-unused-vars
     const [isCollapsed, setisCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [broken, setBroken] = useState(false);
@@ -36,8 +38,7 @@ function SidebarComponent() {
         >
           <div style={{ flex: 1, marginBottom: "32px" }}>
             <Menu iconShape="square">
-              {/* LOGO */}
-              <MenuItem
+              {/* <MenuItem
                 onClick={() => setisCollapsed(!isCollapsed)}
                 icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                 style={{
@@ -51,13 +52,13 @@ function SidebarComponent() {
                     alignItems="center"
                     ml="15px"
                   >
-                    <Typography>Admin Dashboard</Typography>
+                    <Typography>Hide</Typography>
                     <IconButton onClick={() => setisCollapsed(!isCollapsed)}>
                       <MenuOutlinedIcon />
                     </IconButton>
                   </Box>
                 )}
-              </MenuItem>
+              </MenuItem> */}
               {!isCollapsed && (
                 <Box mb="25px">
                  
