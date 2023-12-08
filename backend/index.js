@@ -1,7 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import userRouter from './routes/User_Route.js'; 
+import userRouter from './routes/User_Route.js';
+import AdminDashboard from './routes/Admin_Dashboard.js'
 
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(cors());
 
 
 app.use('/', userRouter);
+app.use('/', AdminDashboard);
 
 
 mongoose.connect(MONGODB_URL)

@@ -66,7 +66,7 @@ function SidebarComponent() {
                 </Box>
               )}
 
-              <Link to="#" className="menu-bars">
+              <Link to="/Dashboard" className="menu-bars">
                 <MenuItem icon={<HomeOutlinedIcon />}>Dashboard</MenuItem>
               </Link>
               <Link to="/user" className="menu-bars">
