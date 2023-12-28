@@ -77,5 +77,30 @@ router.delete('/api/news/:id', async (req, res) => {
     }
 });
 
+//update News
+router.put('/api/news/:id',async(req,res)=>{
+    console.log(req.body)
+    try {
+        if (!req.body.author ||
+            !req.body.headNews ||
+            !req.body.bodyNews 
+            
+            ) {
+            return res.status(400).send({
+                message : "กรุณากรอกให้ครบทุกช่อง"
+            });
+        }
+        const {id} = req.params;
+        const result = await News.findByIdAndUpdate(id,req.body);
+        if (!result) {
+            return res.status(404).json({message : 'ไม่พบ ID'});
+        }
+        return res.status(200).send({message:'Update News success'});
+    } catch (error) {
+        console.log(error.message);
+    response.status(500).send({ message: error.message });
+    }
+})
+
 
 export default router;
