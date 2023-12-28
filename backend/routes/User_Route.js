@@ -37,6 +37,7 @@ router.post("/api/register", async (req, res) => {
         message: "กรุณากรอกให้ครบทุกช่อง",
       });
     }
+    
     const newPassword = await bcrypt.hash(req.body.password, 10);
     await User.create({
       firstname: req.body.firstname,
