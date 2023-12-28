@@ -8,6 +8,7 @@ import ViewUser from "../src/Page/Admin/UserManagement/ViewUser";
 import Homepage from "../src/Page/User/homepage/Homepage";
 import UpdateUser from "../src/Page/Admin/UserManagement/UpdateUser";
 import EditProfile from "./Page/User/EditProfile/EditProfile";
+import News from "./Page/Admin/NewsManagement/News";
 
 function App() {
   return (
@@ -16,11 +17,13 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/Dashboard" element={<Auth><Dashboard /></Auth>} />
         <Route path="/homepage" element={<Auth><Homepage /></Auth>} />
+
         <Route path="/user" element={<Auth><User /></Auth>} />
         <Route path="/userview/:id" element={<Auth><ViewUser /></Auth>} />
         <Route path="/update/:id" element={<Auth><UpdateUser /></Auth>} />
         <Route path="/editProfile/:id" element={<Auth><EditProfile /></Auth>} />
 
+        <Route path="/news" element={<Auth><News /></Auth>} />
 
       </Routes>
     </BrowserRouter>

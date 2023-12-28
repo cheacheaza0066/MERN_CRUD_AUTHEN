@@ -72,7 +72,9 @@ function SidebarComponent() {
               <Link to="/user" className="menu-bars">
                 <MenuItem icon={<HomeOutlinedIcon />}>จัดการผู้ใช้งาน</MenuItem>
               </Link>
-         
+              <Link to="/news" className="menu-bars">
+                <MenuItem icon={<HomeOutlinedIcon />}>จัดการข่าวสาร</MenuItem>
+              </Link>
               {/* <SubMenu icon={<MapOutlinedIcon />} label="Data">
                 <Link to={"/admin/viewtable"} className="menu-bars">
                   <MenuItem icon={<TableViewIcon />}>
